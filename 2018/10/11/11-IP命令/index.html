@@ -50,15 +50,19 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_32X32.ico?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_16X16.ico?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -83,7 +87,7 @@
 <meta property="og:site_name" content="a contented mind is perpetual feast">
 <meta property="og:description" content="IP命令Linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。 单一命令ip [ OPTIONS ] OBJECT { COMMAND | help }">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T13:22:31.200Z">
+<meta property="og:updated_time" content="2018-10-15T15:41:29.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11.IP命令">
 <meta name="twitter:description" content="IP命令Linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。 单一命令ip [ OPTIONS ] OBJECT { COMMAND | help }">
@@ -95,8 +99,8 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -128,16 +132,6 @@
 
 
 
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?327573ae29bff3e49a0152fd0be5e1c2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -197,16 +191,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
@@ -233,6 +217,16 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
           </a>
         </li>
       
@@ -308,7 +302,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="glacier">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -372,17 +366,6 @@
 
           
           
-             <span id="/2018/10/11/11-IP命令/" class="leancloud_visitors" data-flag-title="11.IP命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -405,7 +388,83 @@
       
         <h2 id="IP命令"><a href="#IP命令" class="headerlink" title="IP命令"></a>IP命令</h2><p>Linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。</p>
 <h3 id="单一命令"><a href="#单一命令" class="headerlink" title="单一命令"></a>单一命令</h3><p>ip [ OPTIONS ] OBJECT { COMMAND | help }</p>
-<p>Option是一些修改ip行为或者改变其输出的选项，所有的选项都是以-字符开头，分为长、短两种形式:<br><a id="more"></a><br>| OPTIONS | 全称 | 含义 |<br>| — | — | — |<br>| -c | color | 加颜色显示 |<br>| -t | timestamp | 在motier中加入时间 |<br>| -V | Version | 打印ip的版本并退出 |<br>| -h | human | 人类可读输出 |<br>| -s | statistics | 输出统计信息|<br>| -d | detail | 输出更多的细节信息 |<br>| -l | 指定”IP地址刷新”逻辑将尝试的最大循环数，默认为10 |<br>| -f | -family 指定要使用的协议族，协议可以是一个inet)(-4)，inet6(-6)、bridge(-B), ipx(-I), dnet(-D) or link(-0) |<br>| -o | oneline | 单行输出，用”\”字符替换换行符|<br>| -n | netns |交换机的IP到指定的网络空间netns|<br>| -r | resolve | 使用系统名称解析来打印DNS名称而不是主机地址|<br>| -a | all | 对所有对象执行指定的命令，这取决于命令是否支持这个选项 |<br>| -rc | recive buf |  设置Netlink套接字接收缓冲区的大小设置，默认为1MB |</p>
+<p>Option是一些修改ip行为或者改变其输出的选项，所有的选项都是以-字符开头，分为长、短两种形式:<br><a id="more"></a></p>
+<table>
+<thead>
+<tr>
+<th>OPTIONS</th>
+<th>全称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>color</td>
+<td>加颜色显示</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>timestamp</td>
+<td>在motier中加入时间</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>Version</td>
+<td>打印ip的版本并退出</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>human</td>
+<td>人类可读输出</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>statistics</td>
+<td>输出统计信息</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>detail</td>
+<td>输出更多的细节信息</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>loo</td>
+<td>指定”IP地址刷新”逻辑将尝试的最大循环数，默认为10</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>family</td>
+<td>指定要使用的协议族，协议可以是一个inet)(-4)，inet6(-6)、bridge(-B), ipx(-I), dnet(-D) or link(-0)</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>oneline</td>
+<td>单行输出，用”\”字符替换换行符</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>netns</td>
+<td>交换机的IP到指定的网络空间netns</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>resolve</td>
+<td>使用系统名称解析来打印DNS名称而不是主机地址</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>all</td>
+<td>对所有对象执行指定的命令，这取决于命令是否支持这个选项</td>
+</tr>
+<tr>
+<td>-rc</td>
+<td>recive buf</td>
+<td>设置Netlink套接字接收缓冲区的大小设置，默认为1MB</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -653,58 +712,6 @@
     
 
     
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div></div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechat.jpg" alt="glacier WeChat Pay"/>
-        <p>WeChat Pay</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="glacier Alipay"/>
-        <p>Alipay</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-
-
-    
-      
-<div>
-<div style="text-align:center;color: #ccc;font-size:14px;">
------- 本文结束 ------</div>
-<br/>
-
-<ul class="post-copyright" style="margin: 2em 0 0; padding: 0.5em 1em;border-left: 3px solid #ff1700;background-color: #f9f9f9;list-style: none; ">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    glacier
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
     
 
@@ -800,7 +807,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/head.jpg"
+                src="/images/avatar.gif"
                 alt="glacier" />
             
               <p class="site-author-name" itemprop="name">glacier</p>
@@ -846,52 +853,12 @@
 
           
 
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/glacier-hug" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:21851017@zju.edu.com" target="_blank" title="E-Mail">
-                    
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://wpa.qq.com/msgrd?v=3&uin=644586645&site=在线客服&menu=yes" target="_blank" title="QQ">
-                    
-                      <i class="fa fa-fw fa-qq"></i>QQ</a>
-                </span>
-              
-            
-          </div>
+          
 
           
           
 
           
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.zju.edu.cn" title="ZJU" target="_blank">ZJU</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.cst.zju.edu.cn" title="CST" target="_blank">CST</a>
-                  </li>
-                
-              </ul>
-            </div>
           
 
           
@@ -929,7 +896,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -939,9 +906,15 @@
 </div>
 
 
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
@@ -1032,25 +1005,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1413,111 +1386,6 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("rlHINL5l9IzdouKB8RNR7ril-gzGzoHsz", "IpbeRQ5vde0T5pEI92n7iaJ2");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
