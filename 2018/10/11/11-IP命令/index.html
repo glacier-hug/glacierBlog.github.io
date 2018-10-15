@@ -75,18 +75,18 @@
 
 
 
-<meta name="description" content="systemd简介开机流程  POST –&amp;gt; Boot Sequence –&amp;gt; Bootloader –&amp;gt; kernel + initramfs(initrd) –&amp;gt;rootfs –&amp;gt; /sbin/initinit:  init类别  CentOS 5: SysV initCentOS 6: UpstartCentOS 7: Systemd">
+<meta name="description" content="IP命令Linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。 单一命令ip [ OPTIONS ] OBJECT { COMMAND | help }">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4.CentOS7启动流程">
-<meta property="og:url" content="http://yoursite.com/2018/10/15/4-CentOS7启动流程/index.html">
+<meta property="og:title" content="11.IP命令">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/11-IP命令/index.html">
 <meta property="og:site_name" content="a contented mind is perpetual feast">
-<meta property="og:description" content="systemd简介开机流程  POST –&amp;gt; Boot Sequence –&amp;gt; Bootloader –&amp;gt; kernel + initramfs(initrd) –&amp;gt;rootfs –&amp;gt; /sbin/initinit:  init类别  CentOS 5: SysV initCentOS 6: UpstartCentOS 7: Systemd">
+<meta property="og:description" content="IP命令Linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。 单一命令ip [ OPTIONS ] OBJECT { COMMAND | help }">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T12:55:57.811Z">
+<meta property="og:updated_time" content="2018-10-15T13:22:31.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4.CentOS7启动流程">
-<meta name="twitter:description" content="systemd简介开机流程  POST –&amp;gt; Boot Sequence –&amp;gt; Bootloader –&amp;gt; kernel + initramfs(initrd) –&amp;gt;rootfs –&amp;gt; /sbin/initinit:  init类别  CentOS 5: SysV initCentOS 6: UpstartCentOS 7: Systemd">
+<meta name="twitter:title" content="11.IP命令">
+<meta name="twitter:description" content="IP命令Linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。 单一命令ip [ OPTIONS ] OBJECT { COMMAND | help }">
 
 
 
@@ -116,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/15/4-CentOS7启动流程/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/11/11-IP命令/"/>
 
 
 
 
 
-  <title>4.CentOS7启动流程 | a contented mind is perpetual feast</title>
+  <title>11.IP命令 | a contented mind is perpetual feast</title>
   
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/4-CentOS7启动流程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/11-IP命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="glacier">
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">4.CentOS7启动流程</h1>
+          <h1 class="post-title" itemprop="name headline">11.IP命令</h1>
         
 
         <div class="post-meta">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-15T20:51:35+08:00">
-                2018-10-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-11T10:00:00+08:00">
+                2018-10-11
               </time>
             
 
@@ -372,7 +372,7 @@
 
           
           
-             <span id="/2018/10/15/4-CentOS7启动流程/" class="leancloud_visitors" data-flag-title="4.CentOS7启动流程">
+             <span id="/2018/10/11/11-IP命令/" class="leancloud_visitors" data-flag-title="11.IP命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -403,201 +403,245 @@
       
 
       
-        <h2 id="systemd简介"><a href="#systemd简介" class="headerlink" title="systemd简介"></a>systemd简介</h2><p>开机流程</p>
-<blockquote>
-<p>POST –&gt; Boot Sequence –&gt; Bootloader –&gt; kernel + initramfs(initrd) –&gt;rootfs –&gt; /sbin/init<br>init:</p>
-</blockquote>
-<p>init类别</p>
-<blockquote>
-<p>CentOS 5: SysV init<br>CentOS 6: Upstart<br>CentOS 7: Systemd</p>
-</blockquote>
-<a id="more"></a>
-<p>Systemd：系统启动和服务器守护进程管理器，负责在系统启动或运行时，激活系统资源，服务器进程和其它进程<br>Systemd新特性：<br>系统引导时实现服务并行启动<br>按需启动守护进程<br>自动化的服务依赖关系管理<br>同时采用socket式与D-Bus(deamon Bus)总线式激活服务(既可以网络通讯激活也可以本地应用程序通讯激活)<br>系统状态快照</p>
-<h2 id="unit对象"><a href="#unit对象" class="headerlink" title="unit对象"></a>unit对象</h2><p>unit表示不同类型的systemd对象，通过配置文件进行标识和配置；文件中主要包含了系统服务、监听socket、保存的系统快照以及其它与init相关的信息<br>配置文件：</p>
+        <h2 id="IP命令"><a href="#IP命令" class="headerlink" title="IP命令"></a>IP命令</h2><p>Linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。</p>
+<h3 id="单一命令"><a href="#单一命令" class="headerlink" title="单一命令"></a>单一命令</h3><p>ip [ OPTIONS ] OBJECT { COMMAND | help }</p>
+<p>Option是一些修改ip行为或者改变其输出的选项，所有的选项都是以-字符开头，分为长、短两种形式:<br><a id="more"></a><br>| OPTIONS | 全称 | 含义 |<br>| — | — | — |<br>| -c | color | 加颜色显示 |<br>| -t | timestamp | 在motier中加入时间 |<br>| -V | Version | 打印ip的版本并退出 |<br>| -h | human | 人类可读输出 |<br>| -s | statistics | 输出统计信息|<br>| -d | detail | 输出更多的细节信息 |<br>| -l | 指定”IP地址刷新”逻辑将尝试的最大循环数，默认为10 |<br>| -f | -family 指定要使用的协议族，协议可以是一个inet)(-4)，inet6(-6)、bridge(-B), ipx(-I), dnet(-D) or link(-0) |<br>| -o | oneline | 单行输出，用”\”字符替换换行符|<br>| -n | netns |交换机的IP到指定的网络空间netns|<br>| -r | resolve | 使用系统名称解析来打印DNS名称而不是主机地址|<br>| -a | all | 对所有对象执行指定的命令，这取决于命令是否支持这个选项 |<br>| -rc | recive buf |  设置Netlink套接字接收缓冲区的大小设置，默认为1MB |</p>
 <table>
 <thead>
 <tr>
-<th>目录</th>
-<th>内容</th>
+<th>OBJECT</th>
+<th>全称</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>/usr/lib/systemd/system</td>
-<td>每个服务最主要的启动脚本设置，类似于之前的/etc/init.d/</td>
+<td>link</td>
+<td>linu</td>
+<td>网络设备</td>
 </tr>
 <tr>
-<td>/run/systemd/system</td>
-<td>系统执行过程中所产生的服务脚本</td>
+<td>address</td>
+<td>Adress</td>
+<td>ip或ipv6地址及对应的设备</td>
 </tr>
 <tr>
-<td>/etc/systemd/system</td>
-<td>管理员建立的执行脚本</td>
+<td>neighbor</td>
+<td>neighbor</td>
+<td>ARP或者NDISC缓冲区条目</td>
+</tr>
+<tr>
+<td>route</td>
+<td>Route</td>
+<td>路由表目录</td>
+</tr>
+<tr>
+<td>rule</td>
+<td>Rule</td>
+<td>基于策略的路由配置</td>
+</tr>
+<tr>
+<td>maddress</td>
+<td>Multiple  Address</td>
+<td>多播地址</td>
+</tr>
+<tr>
+<td>mroute</td>
+<td>Multiple Route</td>
+<td>多播路由</td>
+</tr>
+<tr>
+<td>mrule</td>
+<td>Multiple Rule</td>
+<td>组播路由策略数据库中的规则</td>
+</tr>
+<tr>
+<td>tunnel</td>
+<td>Tunnel</td>
+<td>IP上的通道</td>
+</tr>
+<tr>
+<td>monitor</td>
+<td>monitor</td>
+<td>监视网络状态</td>
 </tr>
 </tbody>
 </table>
-<p>优先级/etc/systemd/system &gt; /run/systemd/system &gt; /usr/lib/systemd/system</p>
-<p>如果要修改或覆盖/usr/lib/systemd/system下的配置文件可以</p>
-<h3 id="unit类型"><a href="#unit类型" class="headerlink" title="unit类型"></a>unit类型</h3><p>Service unit: 文件扩展名为.service, 用于定义系统服务<br>Target unit: 文件扩展名为.target，用于模拟实现运行级别<br>Device unit: .device, 用于定义内核识别的设备<br>Mount unit: .mount, 定义文件系统挂载点<br>Socket unit: .socket, 用于标识进程间通信用的socket文件，也可在系统启动时，延迟启动服务，实现按需启动<br>Snapshot unit: .snapshot, 管理系统快照<br>Swap unit: .swap, 用于标识swap设备<br>Automount unit: .automount，文件系统的自动挂载点<br>Path unit: .path，用于定义文件系统中的一个文件或目录使用,常用于当文件系统变化时，延迟激活服务，如：spool 目录</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>关键特性：<br>基于socket的激活机制：socket与服务程序分离<br>基于d-bus的激活机制：<br>基于device的激活机制：<br>基于path的激活机制：<br>系统快照：保存各unit的当前状态信息于持久存储设备中向后兼容sysv init脚本</p>
-<p>不兼容：<br>systemctl命令固定不变，不可自定义参数<br>非由systemd启动的服务，systemctl无法与之通信和控制</p>
-<h3 id="service-unit文件格式"><a href="#service-unit文件格式" class="headerlink" title="service unit文件格式"></a>service unit文件格式</h3><p>在/etc/systemd/system下的unit文件是系统管理员和用户使用<br>在/usr/lib/systemd/system下的供发行版打包者使用</p>
-<p>在unit文件中，以“#” 开头的行后面的内容会被认为是注释，相关布尔值，1、yes、on、true 都是开启，0、no、off、false 都是关闭，时间单位默认是秒，所以要用毫秒（ms）分钟（m）等须显式说明</p>
-<h4 id="service-unit-file"><a href="#service-unit-file" class="headerlink" title="service unit file"></a>service unit file</h4><p>[Unit]：定义与Unit类型无关的通用选项；用于提供unit的描述信息、unit行为及依赖关系等<br>[Service]：定义Unit启动相关的选项，例如启动方式、脚本路径等<br>[Install]：定义由“systemctl enable”以及”systemctl disable“命令在实现服务启用或禁用时用到的一些选项</p>
-<h4 id="unit段的常用选项"><a href="#unit段的常用选项" class="headerlink" title="unit段的常用选项"></a>unit段的常用选项</h4><p>Description：描述信息<br>After：定义unit的启动次序，表示当前unit应该晚于哪些unit启动，其功能与Before相反<br>Requires：依赖到的其它units，强依赖，被依赖的units无法激活时，当前unit也无法激活<br>Wants：依赖到的其它units，弱依赖<br>Conflicts：定义units间的冲突关系</p>
-<h4 id="Service段的常用选项"><a href="#Service段的常用选项" class="headerlink" title="Service段的常用选项"></a>Service段的常用选项</h4><p>Type：定义影响ExecStart及相关参数的功能的unit进程启动类型 </p>
-<ol>
-<li>simple：默认值，这个daemon主要由ExecStart接的指令串来启动，启动后常驻于内存中</li>
-<li>forking：由ExecStart启动的程序透过spawns延伸出其他子程序来作为此daemon的主要服务。原生父程序在启动结束后就会终止</li>
-<li>oneshot：与simple类似，不过这个程序在工作完毕后就结束了，不会常驻在内存中</li>
-<li>dbus：与simple类似，但这个daemon必须要在取得一个D-Bus的名称后，才会继续运作.因此通常也要同时设定BusNname= 才行</li>
-<li>notify：在启动完成后会发送一个通知消息。还需要配合6. 6. NotifyAccess 来让Systemd 接收消息</li>
-<li>idle：与simple类似，要执行这个daemon必须要所有的工作都顺利执行完毕后才会执行。这类的daemon通常是开机到最后才执行即可的服务</li>
-</ol>
-<p>EnvironmentFile：环境配置文件<br>ExecStart：指明启动unit要运行命令或脚本的绝对路径<br>ExecStartPre：ExecStart前运行<br>ExecStartPost：ExecStart后运行<br>ExecStop：指明停止unit要运行的命令或脚本<br>Restart：当设定Restart=1 时，则当次daemon服务意外终止后，会再次自动启动此服务</p>
-<h4 id="install段的常用选项"><a href="#install段的常用选项" class="headerlink" title="install段的常用选项"></a>install段的常用选项</h4><p>Alias：别名，可使用systemctlcommand Alias.service<br>RequiredBy：被哪些units所依赖，强依赖<br>WantedBy：被哪些units所依赖，弱依赖<br>Also：安装本服务的时候还要安装别的相关服务</p>
-<p>注意：<br>对于新创建的unit文件，或者修改了的unit文件，要通知systemd重载此配置文件,而后可以选择重启 </p>
-<p>systemctl daemon-reload 重新扫描unit配置文件</p>
-<h3 id="管理服务"><a href="#管理服务" class="headerlink" title="管理服务"></a>管理服务</h3><p>管理系统服务<br>除了使用命令启动外，可以直接通过程序启动。不过centos7直接通过程序启动则不会受到systemd的管控。<br>centos6服务一般放置在/etc/rc.d/init.d/下，可以直接找到对应服务文件启动。<br>centos7服务一般存在/usr/sbin|/usr/bin/|/bin/|/sbin/下，管理员只需要在/usr/lib/systemd/system/或/etc/syste md/system/下增加unit配置文件，在配置文件中给出需要执行的命令的路径和各种依赖及属性即可。</p>
-<p>centos6保存了各个运行级别的各程序的启动和关闭，通过/etc/rc#.d/下文件名开头K,S辨别。<br>centos7通过在/etc/systemd/system/#.target.wants/下创建链接在保存启动的程序。</p>
+<table>
+<thead>
+<tr>
+<th>COMMAND</th>
+<th>全称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>show</td>
+<td>Show</td>
+<td>显示</td>
+</tr>
+<tr>
+<td>list</td>
+<td>List</td>
+<td>显示</td>
+</tr>
+<tr>
+<td>add</td>
+<td>Add</td>
+<td>增加规则</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>Delete</td>
+<td>删除规则</td>
+</tr>
+<tr>
+<td>help</td>
+<td>Help</td>
+<td>查看对应object操作的帮助</td>
+</tr>
+</tbody>
+</table>
+<h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3><p>ip [ -force ] -batch filename<br>-force：不要终止批处理模式中的错误<br>-b：-batch filenam，从提供的文件或标准输入中读取命令并调用它们，第一次失败将导致IP终止</p>
+<h2 id="ss命令"><a href="#ss命令" class="headerlink" title="ss命令"></a>ss命令</h2><p>SS(Socket Status)查看套接字状态的命令，等同于net-tools中的netstat命令，但ss的优势在于它能够显示更多更详细的有关TCP和连接状态的信息，而且比netstat更快速更高效。<br>当服务器的socket连接数量变得非常大时，无论是使用netstat命令还是直接cat /proc/net/tcp，执行速度都会很慢。可能你不会有切身的感受，但请相信我，当服务器维持的连接达到上万个的时候，使用netstat等于浪费 生命，而用ss才是节省时间。</p>
+<p>天下武功唯快不破。ss快的秘诀在于，它利用到了TCP协议栈中tcp_diag。tcp_diag是一个用于分析统计的模块，可以获得Linux 内核中第一手的信息，这就确保了ss的快捷高效。当然，如果你的系统中没有tcp_diag，ss也可以正常运行，只是效率会变得稍慢。</p>
+<p>语法与netstat类似</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>全称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td>numberic</td>
+<td>不解析服务名称，以数字方式显示</td>
+</tr>
+<tr>
+<td>t</td>
+<td>tcp</td>
+<td>只显示tcp协议的套接字</td>
+</tr>
+<tr>
+<td>u</td>
+<td>udp</td>
+<td>只显示udp协议的套接字</td>
+</tr>
+<tr>
+<td>l</td>
+<td>listen</td>
+<td>显示监听状态的套接字</td>
+</tr>
+<tr>
+<td>p</td>
+<td>process</td>
+<td>显示进程信息</td>
+</tr>
+<tr>
+<td>a</td>
+<td>all</td>
+<td>显示所有状态的套接字</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ipv4</td>
+<td>只显示ipv4协议的套接字</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ipv6</td>
+<td>只显示ipv6协议的套接字</td>
+</tr>
+<tr>
+<td>o</td>
+<td>option</td>
+<td>显示计时器信息(tcp的计时器)</td>
+</tr>
+<tr>
+<td>e</td>
+<td>extend</td>
+<td>显示更多信息</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>selinux</td>
+<td>显示进程对应selinux的上下文</td>
+</tr>
+</tbody>
+</table>
+<h2 id="高级路由"><a href="#高级路由" class="headerlink" title="高级路由"></a>高级路由</h2><p>传统路由基于ip地址或网络地址进行路由选择。而高级路由可以根据策略(端口、协议、网卡、报文大小等进行路由策略配置)</p>
+<h3 id="linux系统路由表"><a href="#linux系统路由表" class="headerlink" title="linux系统路由表"></a>linux系统路由表</h3><p>linux可以自定义从1－252个路由表</p>
+<h4 id="linux系统维护了4个路由表："><a href="#linux系统维护了4个路由表：" class="headerlink" title="linux系统维护了4个路由表："></a>linux系统维护了4个路由表：</h4><p>0#表 系统保留表<br>253#表 default table 没特别指定的默认路由都放在改表<br>254#表 main table 没指明路由表的所有路由放在该表<br>255#表 local table 保存本地接口地址，广播地址、NAT地址 由系统维护，用户不得更改</p>
+<p>路由表序号和表名的对应关系在/etc/iproute2/rt_tables中，可手动编辑<br>可以通过 ip rule查看现有策略</p>
+<h4 id="添加规则"><a href="#添加规则" class="headerlink" title="添加规则"></a>添加规则</h4><p>在添加规则时，必须先确定好“条件”、“优先级别”及“路由表ID”，此后才可以执行添加规则的操作。</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>From</td>
+<td>源地址</td>
+</tr>
+<tr>
+<td>To</td>
+<td>目的地址</td>
+</tr>
+<tr>
+<td>Tos</td>
+<td>IP包头的TOS(type of sevice)</td>
+</tr>
+<tr>
+<td>Dev</td>
+<td>Device物理接口</td>
+</tr>
+<tr>
+<td>Fwmark</td>
+<td>iptables标签</td>
+</tr>
+<tr>
+<td>not</td>
+<td>取反</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
 <th>动作</th>
-<th>Centos6</th>
-<th>Centos7</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>启动</td>
-<td>service deamon start</td>
-<td>systemctl start deamon</td>
+<td>Table</td>
+<td>指明所使用的表</td>
 </tr>
 <tr>
-<td>停止</td>
-<td>service deamon stop</td>
-<td>systemctl stop deamon</td>
-</tr>
-<tr>
-<td>重启</td>
-<td>service deamon restart</td>
-<td>systemctl  restart deamon</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>service deamon status</td>
-<td>systemctl status  deamon</td>
-</tr>
-<tr>
-<td>重载配置文件</td>
-<td>service deamon reload</td>
-<td>systemctl  reload deamon</td>
-</tr>
-<tr>
-<td>条件式重启(已启动才重启)</td>
-<td>service deamon condrestart</td>
-<td>systemctl try-restart  deamon</td>
-</tr>
-<tr>
-<td>重载或重启服务(如果无法重载则重启,否则重载)</td>
-<td>-</td>
-<td>systemctl  tyr-or-restart deamon</td>
-</tr>
-<tr>
-<td>重载或条件式重启服务</td>
-<td>-</td>
-<td>systemctl  tyr-or-try-restart deamon</td>
-</tr>
-<tr>
-<td>禁止自动和手动启动</td>
-<td>-</td>
-<td>systemctl mask deamon(实际是添加空的unit文件链接)</td>
-</tr>
-<tr>
-<td>取消禁止</td>
-<td>-</td>
-<td>systemctl unmask deamon(实际是删除空链接)</td>
-</tr>
-<tr>
-<td>设定某服务开机自启</td>
-<td>chkconfig deamon on</td>
-<td>systemctl enable deamon</td>
-</tr>
-<tr>
-<td>设定某服务开机禁止启动</td>
-<td>chkconfig deamon off</td>
-<td>systemctl disable deamon</td>
-</tr>
-<tr>
-<td>查看所有服务的开机自启状态</td>
-<td>chkconfig –list</td>
-<td>systemctl list-unit-files –type service</td>
-</tr>
-<tr>
-<td>查看服务是否开机自启</td>
-<td>chkconfig –list</td>
-<td>systemctl is-enabled name.service</td>
-</tr>
-<tr>
-<td>获得和修改默认运行级别</td>
-<td>/etc/inittab/</td>
-<td>systemctl get-default,  systemctl set-default #.target or /etc/systemd/system/default.target 实际set-default命令是增加了两个软链接</td>
-</tr>
-<tr>
-<td>直接修改运行级别</td>
-<td>ctrl + alt + F1-F7 or init 0-6</td>
-<td>systemctl isolate #.target(必须target配置文件中Allowisolate=yes才行)</td>
-</tr>
-<tr>
-<td>杀死服务</td>
-<td>kill -signal deamon</td>
-<td>systemctl kill –signal 1-64 deamon</td>
-</tr>
-<tr>
-<td>查看服务的依赖关系</td>
-<td>-</td>
-<td>systemctl list-dependencies name.service</td>
+<td>Nat</td>
+<td>网络地址转换</td>
 </tr>
 </tbody>
 </table>
-<h3 id="服务状态"><a href="#服务状态" class="headerlink" title="服务状态"></a>服务状态</h3><p>loaded:Unit配置文件已处理<br>active(running):一次或多次持续处理的运行<br>active(exited):成功完成一次性的配置<br>active(waiting):运行中，等待一个事件<br>inactive:不运行<br>enabled:开机启动<br>disabled:开机不启动<br>static:开机不启动，但可被另一个启用的服务激活</p>
-<h2 id="CentOS7引导顺序"><a href="#CentOS7引导顺序" class="headerlink" title="CentOS7引导顺序"></a>CentOS7引导顺序</h2><ol>
-<li>UEFi或BIOS初始化，运行POST开机自检</li>
-<li>选择启动设备</li>
-<li>引导装载程序, centos7是grub2</li>
-<li>加载装载程序的配置文件：/etc/grub.d/ /etc/default/grub /boot/grub2/grub.cfg</li>
-<li>加载initramfs驱动模块</li>
-<li>加载内核选项</li>
-<li>内核初始化，centos7使用systemd代替init</li>
-<li>执行initrd.target所有单元，包括挂载/etc/fstab</li>
-<li>从initramfs根文件系统切换到磁盘根目录</li>
-<li>systemd执行默认target配置，配置文件/etc/systemd/system/default.target</li>
-<li>systemd执行sysinit.target初始化系统及basic.target准备操作系统</li>
-<li>systemd启动multi-user.target下的本机与服务器服务</li>
-<li>systemd执行multi-user.target下的/etc/rc.d/rc.local</li>
-<li>Systemd执行multi-user.target下的getty.target及登录服务</li>
-<li>systemd执行graphical需要的服务</li>
-</ol>
-<h2 id="Grub修改密码"><a href="#Grub修改密码" class="headerlink" title="Grub修改密码"></a>Grub修改密码</h2><p>与centos6进入单用户模式runlevel1不同,centos7进入紧急模式runlevel仍然需要root密码<br>设置内核参数，只影响当次启动，但是仍然需要root密码<br>启动时，在linux16行后添加<br>systemd.unit=emergency.target或systemd.unit=rescue.target<br>rescue.target比emergency支持更多的功能，例如日志等。</p>
-<p>因此在centos7下修改root密码有2中方法。</p>
-<ol>
-<li>在挂载完毕虚拟文件系统后停止。手动挂载根文件系统。然后修改root密码。</li>
-<li>将只读模式挂载根文件系统执行init程序修改为可读写模式执行/bin/sh来修改密码。</li>
-</ol>
-<p>两者的共同点都是用读写方式挂载根文件系统，且都不执行init程序。<br>两者的区别在于系统启动不同阶段，中间差了一个挂载</p>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ol>
-<li>在linux16行后添加 rd.break(命令其在加载完虚拟文件系统后停止)</li>
-<li>mount –o remount,rw /sysroot(读写方式挂载根)</li>
-<li>chroot /sysroot (切换根文件系统)</li>
-<li>/bin/passwd root 修改密码</li>
-<li>touch /.autorelabel(让selinux重新对整个文件系统进行relabeling,否则由于修改了对应的密码文件，导致selinux的原因无法读取密码文件，会使系统没法运行)</li>
-</ol>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ol>
-<li>在linux16行后添加 rw init=/sysroot/bin (读写模式挂载且修改第一个程序为bin程序)</li>
-<li>chroot /sysroot</li>
-<li>passwd root </li>
-<li>touch /.autorelabel</li>
+<p>ip rule add from 192.168.1.10 table 10  pref=100</p>
+<h4 id="fwmark"><a href="#fwmark" class="headerlink" title="fwmark"></a>fwmark</h4><p>将fwmark作为匹配条件时，必须搭配Netfilter一起使用， 这看起来很麻烦， 却是最灵活的匹配条件。可以实现基于端口的抓那份。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iptables -t mangle -A FORWARD -i eth3 -p tcp --dport 80 -j MARK --set-mark 1  </span><br><span class="line">iptables -t mangle -A FORWARD -i eth3 -p tcp --dport 25 -j MARK --set-mark 2  </span><br><span class="line">iptables -t mangle -A FORWARD -i eth3 -p tcp --dport 110 -j MARK --set-mark 2  </span><br><span class="line">iptables -t mangle -A FORWARD -i eth3 -j MARK --set-mark 3  </span><br><span class="line">ip rule add fwmark 1 table 7  </span><br><span class="line">ip rule add fwmark 2 table 8 </span><br><span class="line">ip rule add fwmark 3 table 9</span><br></pre></td></tr></table></figure></p>
+<h4 id="dev"><a href="#dev" class="headerlink" title="dev"></a>dev</h4><p>可以使用数据包输入的接口来作为判断依据。<br><code>ip rule add dev eth2 table 1</code></p>
+<h4 id="优先级别"><a href="#优先级别" class="headerlink" title="优先级别"></a>优先级别</h4><p>我们执行ip rule show命令所显示内容的第一个字段就是优先级别，数字越小，代表优先级别越高，也代表这条规则可以排得越靠前，如此数据包在进行条件匹配时，就会越早匹配到这条规则，从输出的数据中，默认优先级别0、32766及32767已被占用，因此，在添加规则时，如果没有特别设置优先级别，那么，优先级别默认会从32766开始递减，如32765、32764……，如果我们需要特别设置优先级别，可以在ip rule add命令的最后加上prio参数</p>
+<h4 id="删除规则"><a href="#删除规则" class="headerlink" title="删除规则"></a>删除规则</h4><p>ip命令提供的删除规则的方式十分灵活，例如，要删除下列第2条规则，可以分别使用“优先级别”、“条件”及“路由表”当中任何一个唯一的值来设置所需删除的规则，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ip rule del prio 10</span><br><span class="line">ip rule del from 192.168.1.0/24</span><br><span class="line">ip rule del table 1</span><br><span class="line">ip rule del from 192.168.1.0/24 table 1 prio 10</span><br></pre></td></tr></table></figure></p>
+<h3 id="路由表管理"><a href="#路由表管理" class="headerlink" title="路由表管理"></a>路由表管理</h3><ol>
+<li><p>查看路由表内容<br>在查看路由表之前，首先使用ip rule show命令来查看目前使用了哪些路由表，接着，再使用ip route show table id | name命令来查看路由表的内容:<br>在默认情况下，不加tale情况下显示的事main表的路由</p>
+</li>
+<li><p>添加路由<br>使用ip route add命令将所需的路由添加到路由表指定表中<br><code>ip route add 192.168.2.0/24 via 10.10.15.50 table main</code></p>
+</li>
+<li><p>删除路由<br>使用ip route del命令删除路由<br><code>ip route del 192.168.1.0/24 table 10</code></p>
+</li>
 </ol>
 
       
@@ -681,8 +725,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/15/3-CentOS6启动流程/" rel="next" title="3.CentOS6启动流程">
-                <i class="fa fa-chevron-left"></i> 3.CentOS6启动流程
+              <a href="/2018/10/10/10-Linux特殊字符/" rel="next" title="10.Linux特殊字符">
+                <i class="fa fa-chevron-left"></i> 10.Linux特殊字符
               </a>
             
           </div>
@@ -690,10 +734,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/15/5-环境变量/" rel="prev" title="5.环境变量">
-                5.环境变量 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -869,7 +909,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#systemd简介"><span class="nav-number">1.</span> <span class="nav-text">systemd简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unit对象"><span class="nav-number">2.</span> <span class="nav-text">unit对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#unit类型"><span class="nav-number">2.1.</span> <span class="nav-text">unit类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">2.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service-unit文件格式"><span class="nav-number">2.3.</span> <span class="nav-text">service unit文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#service-unit-file"><span class="nav-number">2.3.1.</span> <span class="nav-text">service unit file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unit段的常用选项"><span class="nav-number">2.3.2.</span> <span class="nav-text">unit段的常用选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service段的常用选项"><span class="nav-number">2.3.3.</span> <span class="nav-text">Service段的常用选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install段的常用选项"><span class="nav-number">2.3.4.</span> <span class="nav-text">install段的常用选项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理服务"><span class="nav-number">2.4.</span> <span class="nav-text">管理服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务状态"><span class="nav-number">2.5.</span> <span class="nav-text">服务状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS7引导顺序"><span class="nav-number">3.</span> <span class="nav-text">CentOS7引导顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grub修改密码"><span class="nav-number">4.</span> <span class="nav-text">Grub修改密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">4.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">4.2.</span> <span class="nav-text">方法二</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP命令"><span class="nav-number">1.</span> <span class="nav-text">IP命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一命令"><span class="nav-number">1.1.</span> <span class="nav-text">单一命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批处理"><span class="nav-number">1.2.</span> <span class="nav-text">批处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ss命令"><span class="nav-number">2.</span> <span class="nav-text">ss命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级路由"><span class="nav-number">3.</span> <span class="nav-text">高级路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linux系统路由表"><span class="nav-number">3.1.</span> <span class="nav-text">linux系统路由表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#linux系统维护了4个路由表："><span class="nav-number">3.1.1.</span> <span class="nav-text">linux系统维护了4个路由表：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加规则"><span class="nav-number">3.1.2.</span> <span class="nav-text">添加规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fwmark"><span class="nav-number">3.1.3.</span> <span class="nav-text">fwmark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dev"><span class="nav-number">3.1.4.</span> <span class="nav-text">dev</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级别"><span class="nav-number">3.1.5.</span> <span class="nav-text">优先级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除规则"><span class="nav-number">3.1.6.</span> <span class="nav-text">删除规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由表管理"><span class="nav-number">3.2.</span> <span class="nav-text">路由表管理</span></a></li></ol></li></ol></div>
             
 
           </div>

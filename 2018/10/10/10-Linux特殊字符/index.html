@@ -75,18 +75,18 @@
 
 
 
-<meta name="description" content="IFS 介绍Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set">
+<meta name="description" content="Linux下无论如何都是要用到shell命令的，在Shell的实际使用中，有编程经验的很容易上手，但稍微有难度的是shell里面的那些个符号，各种特殊的符号在我们编写Shell脚本的时候如果能够用的好，往往能给我们起到事半功倍的效果，为此，特地将Shell里面的一些符号说明罗列成对照表的形式，以便快速的查找。">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="7.IFS详解">
-<meta property="og:url" content="http://yoursite.com/2018/10/15/7-IFS详解/index.html">
+<meta property="og:title" content="10.Linux特殊字符">
+<meta property="og:url" content="http://yoursite.com/2018/10/10/10-Linux特殊字符/index.html">
 <meta property="og:site_name" content="a contented mind is perpetual feast">
-<meta property="og:description" content="IFS 介绍Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set">
+<meta property="og:description" content="Linux下无论如何都是要用到shell命令的，在Shell的实际使用中，有编程经验的很容易上手，但稍微有难度的是shell里面的那些个符号，各种特殊的符号在我们编写Shell脚本的时候如果能够用的好，往往能给我们起到事半功倍的效果，为此，特地将Shell里面的一些符号说明罗列成对照表的形式，以便快速的查找。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T13:01:27.540Z">
+<meta property="og:updated_time" content="2018-10-15T13:22:21.951Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="7.IFS详解">
-<meta name="twitter:description" content="IFS 介绍Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set">
+<meta name="twitter:title" content="10.Linux特殊字符">
+<meta name="twitter:description" content="Linux下无论如何都是要用到shell命令的，在Shell的实际使用中，有编程经验的很容易上手，但稍微有难度的是shell里面的那些个符号，各种特殊的符号在我们编写Shell脚本的时候如果能够用的好，往往能给我们起到事半功倍的效果，为此，特地将Shell里面的一些符号说明罗列成对照表的形式，以便快速的查找。">
 
 
 
@@ -116,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/15/7-IFS详解/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/10/10-Linux特殊字符/"/>
 
 
 
 
 
-  <title>7.IFS详解 | a contented mind is perpetual feast</title>
+  <title>10.Linux特殊字符 | a contented mind is perpetual feast</title>
   
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/7-IFS详解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/10/10-Linux特殊字符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="glacier">
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">7.IFS详解</h1>
+          <h1 class="post-title" itemprop="name headline">10.Linux特殊字符</h1>
         
 
         <div class="post-meta">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-15T21:00:14+08:00">
-                2018-10-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-10T10:00:00+08:00">
+                2018-10-10
               </time>
             
 
@@ -372,7 +372,7 @@
 
           
           
-             <span id="/2018/10/15/7-IFS详解/" class="leancloud_visitors" data-flag-title="7.IFS详解">
+             <span id="/2018/10/10/10-Linux特殊字符/" class="leancloud_visitors" data-flag-title="10.Linux特殊字符">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -403,18 +403,134 @@
       
 
       
-        <h2 id="IFS-介绍"><a href="#IFS-介绍" class="headerlink" title="IFS 介绍"></a>IFS 介绍</h2><p>Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set commands, when parsing output from command substitution, and when performing variable substitution.<br>IFS是一种用户变量，当shell 处理”命令替换”和”参数替换”时，shell根据IFS 的值，默认是space,tab,newline来拆解读入的变量，然后对特殊字符进行处理，最后重新组合赋值给该变量。</p>
-<h2 id="IFS-简单实例"><a href="#IFS-简单实例" class="headerlink" title="IFS 简单实例"></a>IFS 简单实例</h2><ol>
-<li>查看变量 IFS 的值。<br>直接输出IFS是看不到的，把它转化为二进制就可以看到了，”040”是空格，”011”是Tab，”012”是换行符”\n” 。最后一个 012 是因为 echo 默认是会换行的。<br>或者在set中查找也可以<a id="more"></a>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">localhost:~ glacier$ set | grep IFS</span><br><span class="line">IFS=$&apos; \t\n&apos;</span><br><span class="line">localhost:~ glacier$ echo &quot;$IFS&quot; | od -b</span><br><span class="line">0000000   040 011 012 012                                                </span><br><span class="line">0000004</span><br></pre></td></tr></table></figure>
-<p>2、$* 和 $@ 的细微差别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">IFS=:</span><br><span class="line">set -- &quot;X&quot; &quot;Y Z&quot;</span><br><span class="line">localhost:~ glacier$ echo &quot;$\*&quot;</span><br><span class="line">X:Y Z</span><br><span class="line">localhost:~ glacier$ echo $*</span><br><span class="line">X Y Z</span><br><span class="line">localhost:~ glacier$ echo $* |od -b</span><br><span class="line">0000000 170 040 171 040 172 012</span><br><span class="line">0000006</span><br><span class="line">localhost:~ glacier$ $ echo &quot;$\*&quot; |od -b</span><br><span class="line">0000000 170 072 171 040 172 012</span><br><span class="line">0000006</span><br><span class="line">localhost:~ glacier$ echo &quot;$@&quot;</span><br><span class="line">X Y Z</span><br><span class="line">localhost:~ glacier$ echo $@</span><br><span class="line">X Y Z</span><br><span class="line">localhost:~ glacier$ $ echo &quot;$@&quot; |od -b</span><br><span class="line">0000000 170 072 171 040 172 012</span><br><span class="line">0000006</span><br><span class="line">localhost:~ glacier$ $ echo $@ |od -b</span><br><span class="line">0000000 170 072 171 040 172 012</span><br><span class="line">0000006</span><br></pre></td></tr></table></figure></p>
-<p>$*变量在内存中的值是根据IFS分隔符重新组合起来,成为一个整体存储在内存中。在内存中单位是一个字符串。在命令解释时若没有引号则会根据IFS分隔符分割成不同的单词然后根据元字符(空格)隔开。<br>$@变量将所有参数使用元字符(空格或其他字符)隔开存放在内存当中，在内存中存储单元是是数组。<br>直接应用场景是function函数只能返回一个值，因此只能返回$*</p>
-<ol start="3">
-<li>for命令<br><em>for命令仍然根据空格元字符识别一次读取一个。</em><br>下面差距的不同只是有没有通过第9步解析将使用IFS分割单词再按元字符空格隔开而已。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">localhost:~ glacier$ for x in $var;do echo $x;done</span><br><span class="line"></span><br><span class="line"> a</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">c</span><br><span class="line">localhost:~ glacier$ for x in &quot;$var&quot;;do echo $x;done</span><br><span class="line">  a b  c</span><br><span class="line">localhost:~ glacier$ for x in &quot;$var&quot;;do echo &quot;$x&quot;;done</span><br><span class="line">: a:b:c:</span><br></pre></td></tr></table></figure>
+        <p>Linux下无论如何都是要用到shell命令的，在Shell的实际使用中，有编程经验的很容易上手，但稍微有难度的是shell里面的那些个符号，各种特殊的符号在我们编写Shell脚本的时候如果能够用的好，往往能给我们起到事半功倍的效果，为此，特地将Shell里面的一些符号说明罗列成对照表的形式，以便快速的查找。</p>
+<a id="more"></a>
+<h2 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h2><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>作用</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>``</td>
+<td>返回子Shell查询结果并赋值给变量</td>
+<td>dating = `date`</td>
+</tr>
+<tr>
+<td>$()</td>
+<td>返回子Shell查询结果并赋值给变量</td>
+<td>dating = $(date)</td>
+</tr>
+<tr>
+<td>()</td>
+<td>进行子Shell<br>数组</td>
+<td>(date; echo “Hello World”)<br> myArray=(1,2,3,4,5,6,7)</td>
+</tr>
+<tr>
+<td>(( ))</td>
+<td>整数扩展，使用高级数学表达式<br>使用C语言风格运算</td>
+<td>++,–,!,~,&lt;&lt;,&amp;,&amp;#124,&amp;&amp;,&amp;#124&amp;#124等 <br> for (( i=1; i &lt;= 100; i++ ))</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>返回条件测试结果</td>
+<td>[ a eq b]</td>
+</tr>
+<tr>
+<td>$[ ]</td>
+<td>进行整数级运算并赋值给变量</td>
+<td>[ $a * $b]</td>
+</tr>
+<tr>
+<td>[[ ]]</td>
+<td>字符串高级匹配模式</td>
+<td>[[ qualificationA &amp;&amp; qualificationB]]</td>
+</tr>
+<tr>
+<td>{}</td>
+<td>通配符扩展<br>在当前shell顺序执行命令cmd1,cmd2,cmd3, 各命令之间用分号隔开, 最后一个命令后必须有分号</td>
+<td>touch /{a..d}.txt<br>{echo “A”; echo “B”;}</td>
+</tr>
+<tr>
+<td>${}</td>
+<td>变量替换</td>
+<td>${variable%%&amp;/}</td>
+</tr>
+<tr>
+<td>#</td>
+<td>注释符号(Hashmark[Comments])<br>1.在shell文件的行首，作为shebang标记，#!/bin/bash;<br>2. 其他地方作为注释使用，在一行中，#后面的内容并不会被执行；<br>3. 用单/双引号包围时，#作为#号字符本身，不具有注释作用。</td>
+<td>#! bin/bash <br> # This Bash is to identify the differnece between then A and B</td>
+</tr>
+<tr>
+<td>;</td>
+<td>作为多语句的分隔符</td>
+<td>echo “ABC”; echo “BCD”</td>
+</tr>
+<tr>
+<td>;;</td>
+<td>在使用case选项的时候，作为每个选项的终结符</td>
+<td>case variable in <br> A) echo “AAA”; echo “ BBB”;;</td>
+</tr>
+<tr>
+<td>.</td>
+<td>1.等于source<br>2.文件名的开头，表示该文件为隐藏文件<br>3.目录名，一个点代表当前目录，两个点号代表上层目录<br>4.正则表达式中，点号表示任意一个字符。</td>
+<td>. ./.bashrc</td>
+</tr>
+<tr>
+<td>“</td>
+<td>双引号包围的内容可以允许变量扩展</td>
+<td>[ -e “$filepath”]</td>
+</tr>
+<tr>
+<td>‘</td>
+<td>单引号括住的内容，被视为单一字符串，引号内的禁止变量扩展，除单引号本身之外,所有字符均作为字符本身处理</td>
+<td>echo ‘A B C’</td>
+</tr>
+<tr>
+<td>$?</td>
+<td>返回最后一个命令、函数、或脚本的退出状态码值，如果没有错误则是0，如果为非0，则表示在此之前的最后一次执行有错误。</td>
+<td>echo $?</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>表示传递给脚本的参数数量</td>
+<td>echo $#</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>将所有参数作为一个整体返回</td>
+<td>echo $*</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>将所有参数作为个体一次输出</td>
+<td>echp $@</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>保存当前程序进程id</td>
+<td>echo $$</td>
+</tr>
+<tr>
+<td>$!</td>
+<td>后台运行的最后一个进程的进程ID号</td>
+<td>echo $!</td>
+</tr>
+<tr>
+<td>-</td>
+<td>将命令产生的结果当成文件输送到stdout中，从stdio中读取数据当成文件使用<br>关闭文件描述符</td>
+<td>tar -cjf - /* &amp;#124 tar -xjf - -C /usr/local<br> exec 3&gt;&amp;-</td>
+</tr>
+<tr>
+<td>–</td>
+<td>设置当前的命令行参数时如果参数值时”-“或”+”时也不影响,否则会被当成一个选项处理 <br>移除信号捕获</td>
+<td>set – “argu” “agru2” <br> trap – SIGINT</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -497,8 +613,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/15/6-Shell命令解析过程/" rel="next" title="6.Shell命令解析过程">
-                <i class="fa fa-chevron-left"></i> 6.Shell命令解析过程
+              <a href="/2018/10/09/9-字符集Locale语系/" rel="next" title="9.字符集Locale语系">
+                <i class="fa fa-chevron-left"></i> 9.字符集Locale语系
               </a>
             
           </div>
@@ -507,8 +623,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/15/8-Linux目录结构和常用配置文件/" rel="prev" title="8.Linux目录结构和常用配置文件">
-                8.Linux目录结构和常用配置文件 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/11/11-IP命令/" rel="prev" title="11.IP命令">
+                11.IP命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -685,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IFS-介绍"><span class="nav-number">1.</span> <span class="nav-text">IFS 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IFS-简单实例"><span class="nav-number">2.</span> <span class="nav-text">IFS 简单实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊符号"><span class="nav-number">1.</span> <span class="nav-text">特殊符号</span></a></li></ol></div>
             
 
           </div>

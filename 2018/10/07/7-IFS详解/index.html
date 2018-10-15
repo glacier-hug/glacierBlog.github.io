@@ -75,18 +75,18 @@
 
 
 
-<meta name="description" content="字符集字符集是一个规则集合的名字，通常包括字库表，编码字符集，字符编码方式。  字库表（character repertoire）：字库表是一个相当于所有可读或者可显示字符的数据库，字库表决定了整个字符集能够展现表示的所有字符的范围。 编码字符集（coded character set）编码字符集，用一个编码值code point来表示一个字符（即该字符在子库表中的位置），这个值称为字符对应于编码">
+<meta name="description" content="IFS 介绍Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="9.字符集Locale语系">
-<meta property="og:url" content="http://yoursite.com/2018/10/15/9-字符集Locale语系/index.html">
+<meta property="og:title" content="7.IFS详解">
+<meta property="og:url" content="http://yoursite.com/2018/10/07/7-IFS详解/index.html">
 <meta property="og:site_name" content="a contented mind is perpetual feast">
-<meta property="og:description" content="字符集字符集是一个规则集合的名字，通常包括字库表，编码字符集，字符编码方式。  字库表（character repertoire）：字库表是一个相当于所有可读或者可显示字符的数据库，字库表决定了整个字符集能够展现表示的所有字符的范围。 编码字符集（coded character set）编码字符集，用一个编码值code point来表示一个字符（即该字符在子库表中的位置），这个值称为字符对应于编码">
+<meta property="og:description" content="IFS 介绍Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T13:04:01.046Z">
+<meta property="og:updated_time" content="2018-10-15T13:21:47.825Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="9.字符集Locale语系">
-<meta name="twitter:description" content="字符集字符集是一个规则集合的名字，通常包括字库表，编码字符集，字符编码方式。  字库表（character repertoire）：字库表是一个相当于所有可读或者可显示字符的数据库，字库表决定了整个字符集能够展现表示的所有字符的范围。 编码字符集（coded character set）编码字符集，用一个编码值code point来表示一个字符（即该字符在子库表中的位置），这个值称为字符对应于编码">
+<meta name="twitter:title" content="7.IFS详解">
+<meta name="twitter:description" content="IFS 介绍Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set">
 
 
 
@@ -116,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/15/9-字符集Locale语系/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/07/7-IFS详解/"/>
 
 
 
 
 
-  <title>9.字符集Locale语系 | a contented mind is perpetual feast</title>
+  <title>7.IFS详解 | a contented mind is perpetual feast</title>
   
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/9-字符集Locale语系/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/07/7-IFS详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="glacier">
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">9.字符集Locale语系</h1>
+          <h1 class="post-title" itemprop="name headline">7.IFS详解</h1>
         
 
         <div class="post-meta">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-15T21:03:12+08:00">
-                2018-10-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-07T10:00:00+08:00">
+                2018-10-07
               </time>
             
 
@@ -372,7 +372,7 @@
 
           
           
-             <span id="/2018/10/15/9-字符集Locale语系/" class="leancloud_visitors" data-flag-title="9.字符集Locale语系">
+             <span id="/2018/10/07/7-IFS详解/" class="leancloud_visitors" data-flag-title="7.IFS详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -403,22 +403,18 @@
       
 
       
-        <h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><p>字符集是一个规则集合的名字，通常包括字库表，编码字符集，字符编码方式。</p>
-<ol>
-<li>字库表（character repertoire）：<br>字库表是一个相当于所有可读或者可显示字符的数据库，字库表决定了整个字符集能够展现表示的所有字符的范围。</li>
-<li>编码字符集（coded character set）<br>编码字符集，用一个编码值code point来表示一个字符（即该字符在子库表中的位置），这个值称为字符对应于编码字符集（如：Unicode、ASCII）的序号。</li>
-<li>字符编码：<br>字符编码，是编码字符集和实际存储数值之间的转换关系。字符，是根据字符编码方案转换为一个二进制数值存储在计算机中的。<br>所以，字符编码是定义在字符集上的映射规则。将逻辑的十六进制编码转变为计算机存储的二进制代码存储。</li>
+        <h2 id="IFS-介绍"><a href="#IFS-介绍" class="headerlink" title="IFS 介绍"></a>IFS 介绍</h2><p>Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。完整定义是The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set commands, when parsing output from command substitution, and when performing variable substitution.<br>IFS是一种用户变量，当shell 处理”命令替换”和”参数替换”时，shell根据IFS 的值，默认是space,tab,newline来拆解读入的变量，然后对特殊字符进行处理，最后重新组合赋值给该变量。</p>
+<h2 id="IFS-简单实例"><a href="#IFS-简单实例" class="headerlink" title="IFS 简单实例"></a>IFS 简单实例</h2><ol>
+<li>查看变量 IFS 的值。<br>直接输出IFS是看不到的，把它转化为二进制就可以看到了，”040”是空格，”011”是Tab，”012”是换行符”\n” 。最后一个 012 是因为 echo 默认是会换行的。<br>或者在set中查找也可以<a id="more"></a>
+</li>
 </ol>
-<a id="more"></a>
-<h2 id="常用字符集及字符编码"><a href="#常用字符集及字符编码" class="headerlink" title="常用字符集及字符编码"></a>常用字符集及字符编码</h2><ol>
-<li>ASCII字符集&amp;编码<br>ASCII(American Standard Code for Information Interchange, 美国信息交换标准代码)是基于拉丁字母的一套电脑编码系统。它主要用于显示现代英语，而其扩展版本EASCII则可以部分支持其他西欧语言，并等同于国际标准ISO/IEC 646。<br>字符集范围<br>ASCII一共定义了128个字符,包括33个控制字符,和95个可显示字符。大部分的控制字符已经被废弃。7位ASCII编码码是UTF-8编码的子集,因此当一个文件中只有英文字母和数字时，ASCII编码和UTF-8编码是相同的。<br>扩展ASCII码，即8位ASCII码，后128个称为扩展ASCII码。许多基于x86的系统都支持使用扩展ASCII码。扩展ASCII码允许将每个字符的第8位用于确定附加的128个特殊符号字符、外来语字母和图形符号<br>ASCII码每个字符占一个字节</li>
-<li>GB2312字符集&amp;编码<br>GB2312是中华人民共和国国家标准简体中文字符<br>字符集范围<br>GB 2312标准共收录6763个汉字，其中一级汉字3755个，二级汉字3008个；同时收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的682个字符。<br>编码格式<br>每个汉字及符号以两个字节来表示。第一个字节称为“高位字节”，第二个字节称为“低位字节”。显然由于存放单位不同，GB2312不兼容ASCII</li>
-<li>GBK字符集&amp;编码<br>汉字内码扩展规范，称GBK<br>字符集<br>GB2312-80只收录6763个汉字，有不少汉字，如部分在GB 2312-80推出以后才简化的汉字（如“啰”），部分人名用字（如中国前总理朱镕的“镕”字），台湾及香港使用的繁体字，日语及朝鲜语汉字等，并未有收录在内。GBK对GB 2312-80进行扩展, 总计拥有 23940 个码位，共收入21886个汉字和图形符号，其中汉字（包括部首和构件）21003个，图形符号883个。<br>编码格式<br>GBK亦采用双字节表示，GBK向下完全兼容GB2312-80编码。<br>4.Unicode字符集&amp;UTF-8编码&amp;UTF-16编码<br>Unicode是计算机科学领域里的一项业界标准，包括字符集、编码方案等。Unicode 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。<br>字符集<br>Unicode是国际组织制定的可以容纳世界上所有文字和符号的字符编码方案。目前的Unicode字符分为17组编排，0x0000 至 0x10FFFF，每组称为平面（Plane），而每平面拥有65536个码位，共1114112个。<br>UTF-8编码<br>UTF-8的特点是对不同范围的字符使用不同长度的编码。对于0x00-0x7F之间的字符，UTF-8编码与7位ASCII编码完全相同。UTF-8编码的最大长度是4个字节。<br>UTF-16编码<br>UTF-16编码以16位无符号整数为单位，即2个字节一个单位进行编码。<br>UTF-32编码<br>UTF-32编码以32位无符号整数为单位，即4个字节一个单位进行编码。</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">localhost:~ glacier$ set | grep IFS</span><br><span class="line">IFS=$&apos; \t\n&apos;</span><br><span class="line">localhost:~ glacier$ echo &quot;$IFS&quot; | od -b</span><br><span class="line">0000000   040 011 012 012                                                </span><br><span class="line">0000004</span><br></pre></td></tr></table></figure>
+<p>2、$* 和 $@ 的细微差别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">IFS=:</span><br><span class="line">set -- &quot;X&quot; &quot;Y Z&quot;</span><br><span class="line">localhost:~ glacier$ echo &quot;$\*&quot;</span><br><span class="line">X:Y Z</span><br><span class="line">localhost:~ glacier$ echo $*</span><br><span class="line">X Y Z</span><br><span class="line">localhost:~ glacier$ echo $* |od -b</span><br><span class="line">0000000 170 040 171 040 172 012</span><br><span class="line">0000006</span><br><span class="line">localhost:~ glacier$ $ echo &quot;$\*&quot; |od -b</span><br><span class="line">0000000 170 072 171 040 172 012</span><br><span class="line">0000006</span><br><span class="line">localhost:~ glacier$ echo &quot;$@&quot;</span><br><span class="line">X Y Z</span><br><span class="line">localhost:~ glacier$ echo $@</span><br><span class="line">X Y Z</span><br><span class="line">localhost:~ glacier$ $ echo &quot;$@&quot; |od -b</span><br><span class="line">0000000 170 072 171 040 172 012</span><br><span class="line">0000006</span><br><span class="line">localhost:~ glacier$ $ echo $@ |od -b</span><br><span class="line">0000000 170 072 171 040 172 012</span><br><span class="line">0000006</span><br></pre></td></tr></table></figure></p>
+<p>$*变量在内存中的值是根据IFS分隔符重新组合起来,成为一个整体存储在内存中。在内存中单位是一个字符串。在命令解释时若没有引号则会根据IFS分隔符分割成不同的单词然后根据元字符(空格)隔开。<br>$@变量将所有参数使用元字符(空格或其他字符)隔开存放在内存当中，在内存中存储单元是是数组。<br>直接应用场景是function函数只能返回一个值，因此只能返回$*</p>
+<ol start="3">
+<li>for命令<br><em>for命令仍然根据空格元字符识别一次读取一个。</em><br>下面差距的不同只是有没有通过第9步解析将使用IFS分割单词再按元字符空格隔开而已。</li>
 </ol>
-<h2 id="locate-Internationalization-i18n"><a href="#locate-Internationalization-i18n" class="headerlink" title="locate Internationalization(i18n)"></a>locate Internationalization(i18n)</h2><p>在Linux中通过locale来设置程序运行的不同语言环境。<br>locale的命名规则为language_region.codetype<br>如zh_CN.UTF-8，zh代表中文， CN代表中国，UTF-8表采用unicode字符集使用utf-8编码模式。<br>在locale环境中，有一组变量，代表国际化环境中的不同设置</p>
-<p>1、 语言符号及其分类(LC_CTYPE)<br>用于字符分类和字符串处理，控制所有字符的处理方式，包括字符编码，字符是单字节还是多字节，如何打印等。是最重要的一个环境变量。<br>2、 数字(LC_NUMERIC)<br>非货币的数字显示格式<br>3、 比较和排序习惯(LC_COLLATE)<br>定义该环境的排序和比较规则。按照字符集的先后顺序排列。<br>4、 时间显示格式(LC_TIME)<br>时间和日期格式<br>5、 货币单位(LC_MONETARY)<br>货币格式<br>6、 信息主要是提示信息,错误信息, 状态信息, 标题, 标签, 按钮和菜单等(LC_MESSAGES)<br>7、 姓名书写方式(LC_NAME)<br>8、 地址书写方式(LC_ADDRESS)<br>9、 电话号码书写方式(LC_TELEPHONE)<br>10、度量衡表达方式(LC_MEASUREMENT)<br>11、默认纸张尺寸大小(LC_PAPER)<br>12、对locale自身包含信息的概述(LC_IDENTIFICATION)。</p>
-<p>设定locale就是设定12大类的locale分类属性，即 12个LC_。除了这12个变量可以设定以外，为了简便起见，还有两个变量：LC_ALL和LANG。<br>它们之间有一个优先级的关系：LC_ALL &gt; LC_* &gt; LANG<br>可以这么说，LC_ALL是最上级设定或者强制设定，而LANG是默认设定值。</p>
-<h2 id="配置语系"><a href="#配置语系" class="headerlink" title="配置语系"></a>配置语系</h2><p>Centos下修改/etc/sysconfig/i16n文件<br>Centos下修改/ect/locale.conf和localectl命令,需要logout再次登录才能生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">localhost:~ glacier$ for x in $var;do echo $x;done</span><br><span class="line"></span><br><span class="line"> a</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">c</span><br><span class="line">localhost:~ glacier$ for x in &quot;$var&quot;;do echo $x;done</span><br><span class="line">  a b  c</span><br><span class="line">localhost:~ glacier$ for x in &quot;$var&quot;;do echo &quot;$x&quot;;done</span><br><span class="line">: a:b:c:</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -501,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/15/8-Linux目录结构和常用配置文件/" rel="next" title="8.Linux目录结构和常用配置文件">
-                <i class="fa fa-chevron-left"></i> 8.Linux目录结构和常用配置文件
+              <a href="/2018/10/06/6-Shell命令解析过程/" rel="next" title="6.Shell命令解析过程">
+                <i class="fa fa-chevron-left"></i> 6.Shell命令解析过程
               </a>
             
           </div>
@@ -511,8 +507,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/15/10-Linux特殊字符/" rel="prev" title="10.Linux特殊字符">
-                10.Linux特殊字符 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/08/8-Linux目录结构和常用配置文件/" rel="prev" title="8.Linux目录结构和常用配置文件">
+                8.Linux目录结构和常用配置文件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -689,7 +685,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集"><span class="nav-number">1.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用字符集及字符编码"><span class="nav-number">2.</span> <span class="nav-text">常用字符集及字符编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#locate-Internationalization-i18n"><span class="nav-number">3.</span> <span class="nav-text">locate Internationalization(i18n)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置语系"><span class="nav-number">4.</span> <span class="nav-text">配置语系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IFS-介绍"><span class="nav-number">1.</span> <span class="nav-text">IFS 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IFS-简单实例"><span class="nav-number">2.</span> <span class="nav-text">IFS 简单实例</span></a></li></ol></div>
             
 
           </div>
