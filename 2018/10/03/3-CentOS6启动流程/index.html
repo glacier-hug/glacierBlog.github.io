@@ -87,18 +87,18 @@
 <meta property="og:site_name" content="a contented mind is perpetual feast">
 <meta property="og:description" content="Linux启动流程">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_1.jpg">
-<meta property="og:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_2.jpg">
-<meta property="og:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_3.jpg">
-<meta property="og:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_4.jpg">
-<meta property="og:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_5.jpg">
-<meta property="og:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_6.jpg">
-<meta property="og:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_7.jpg">
-<meta property="og:updated_time" content="2018-10-15T13:20:40.219Z">
+<meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_1.jpg">
+<meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_2.jpg">
+<meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_3.jpg">
+<meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_4.jpg">
+<meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_5.jpg">
+<meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_6.jpg">
+<meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_7.jpg">
+<meta property="og:updated_time" content="2018-10-25T05:26:58.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3.CentOS6启动流程">
 <meta name="twitter:description" content="Linux启动流程">
-<meta name="twitter:image" content="https://glacier-hug.github.io/2018/10/03/3-CentOS6启动流程/linux_3_1.jpg">
+<meta name="twitter:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_1.jpg">
 
 
 
@@ -394,34 +394,39 @@
       
 
       
-        <h1 id="Linux启动流程"><a href="#Linux启动流程" class="headerlink" title="Linux启动流程"></a>Linux启动流程</h1><p><img src="/2018/10/03/3-CentOS6启动流程/linux_3_1.jpg" alt="procedure1"></p>
+        <h1 id="Linux启动流程"><a href="#Linux启动流程" class="headerlink" title="Linux启动流程"></a>Linux启动流程</h1><p><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_1.jpg" alt="procedure1"></p>
 <a id="more"></a>
-<h2 id="第一步-硬件引导启动"><a href="#第一步-硬件引导启动" class="headerlink" title="第一步:硬件引导启动"></a>第一步:硬件引导启动</h2><p><img src="/2018/10/03/3-CentOS6启动流程/linux_3_2.jpg" alt="procedure1"></p>
+<h2 id="第一步-硬件引导启动"><a href="#第一步-硬件引导启动" class="headerlink" title="第一步:硬件引导启动"></a>第一步:硬件引导启动</h2><p><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_2.jpg" alt="procedure1"></p>
 <ol>
 <li>用户打开电源</li>
-<li>BIOS(Basic Input Output System)，首先开机自检POST(Power On And Self Test)，初始化硬件设备，检查系统的各项设备，确定无硬件问题后，根据BIOS设定的启动顺序，启动设备，如果硬盘是启动项的话，会读取该硬盘第一个扇区的内容MBR主引导记录(Master Boot Record)(512Byte)</li>
-<li>MBR分为三部分,bootloader(446Byte)、partition(16*4byte),magic digit(2byte)(标志这个扇区为MBR),在linux中一般bootloader为GRUB或LILO。<h2 id="第二步：GRUB引导启动内核"><a href="#第二步：GRUB引导启动内核" class="headerlink" title="第二步：GRUB引导启动内核"></a>第二步：GRUB引导启动内核</h2><img src="/2018/10/03/3-CentOS6启动流程/linux_3_3.jpg" alt="procedure1"><br>由于446字节太小，不够运行完整的grub,因此bootloader中只是存放了grub.stage1。grub一般分为stage1、stage1.5、stage2三个阶段，各自执行各自的功能。</li>
-<li><p>Stage1阶段：<br>Stage1阶段其实就是执行系统安装时预先写入到MBR的Bootloader中的程序。<br>Stage1阶段的任务仅是将硬盘0柱面0磁道2扇区的内容读入内存并执行，它是Stage1.5阶段或Stage2阶段的入口，引导进入Stage1.5阶段或Stage2阶段。<br>在此Stage1阶段，还没有识别文件系统的能力。</p>
-</li>
-<li><p>Stage1.5阶段<br>stage1.5阶段是stage1阶段和stage2阶段的中间桥梁。<br>加载到内存的第二个扇区的内容是由GRUB源码stage/start.S汇编而成，这个汇编文件汇编出来的二进制文件大小也是512B，一个扇区的大小。<br>接下来就要说明Stage1.5阶段的作用了。</p>
-</li>
+<li>BIOS(Basic Input Output System)，首先开机自检POST(Power On And Self Test)，初始化硬件设备，检查系统的各项设备，确定无硬件问题后，根据BIOS设定的启动顺序，启动设备，如果硬盘是启动项的话，会通过INT13中断来，读取该硬盘第一个扇区的内容MBR主引导记录(Master Boot Record)(512Byte)</li>
+<li>MBR分为三部分,bootloader(446Byte)、partition(16*4byte),magic digit(2byte)(标志这个扇区为MBR),在linux中一般bootloader为GRUB或LILO。<h2 id="第二步：GRUB引导启动内核"><a href="#第二步：GRUB引导启动内核" class="headerlink" title="第二步：GRUB引导启动内核"></a>第二步：GRUB引导启动内核</h2><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_3.jpg" alt="procedure1"><br>由于446字节太小，不够运行完整的grub,因此bootloader中只是存放了grub.stage1。grub一般分为stage1、stage1.5、stage2三个阶段，各自执行各自的功能。</li>
+<li>Stage1阶段：<br>Stage1阶段其实就是执行系统安装时预先写入到MBR的Bootloader中的程序。<br>Stage1阶段的任务仅是将硬盘0柱面0磁道2扇区的内容读入内存并执行，它是Stage1.5阶段或Stage2阶段的入口，引导进入Stage1.5阶段或Stage2阶段。<br>在此Stage1阶段，还没有识别文件系统的能力。</li>
 </ol>
-<p>首先注意到Centos的操作系统内核存储在/boot/目录下，而/boot/目录挂载了ext4文件系统，因此我们要读取操作系统内核，首先我们必须要载入ext4文件系统，否则我们根本无法读取系统内核文件。因此Stage1.5阶段的作用就不言而喻了，那就是从第二个扇区开始的N个扇区中读取/boot/分区所属的文件系统驱动。<br>我们可以看到/boot/grub下有各种文件系统类型的文件,一般我们在使用外部硬盘安装系统时，grub会判断/boot文件夹挂载的分区的文件系统格式,一般而言是ext,因此会选择/boot/grub/e2fs_stage1_5文件,将其连续的放入内存中，以便计算机能够载入文件系统，从而载入内核，因此这时硬盘的第二个扇区的内容和/boot/grub/e2fs_stage1_5文件的前512字节一样，这部分内容是有grub源码/stage2/start.S汇编出的，而这个start.S的作用就是加载磁盘的第三个扇区到第N个扇区到内存，N取几，取决与文件系统的支撑代码的大小。</p>
+<p>注:通过BIOS的INT13中断服务程序，可以访问磁盘，参数是读取扇区的起始磁道号、磁头号、扇区号，读取的扇区个数，缓冲区位置等，与驱动程序相比只能以扇区为单位，因此当磁盘驱动程序加载完毕后就使用驱动程序来读取磁盘了。<br>早起BIOS无法读取1024逻辑盘号后的扇区，因此需要划分一个小型boot分区，使分区内容都在1024号扇区前，但现在主板的bios已经升级，可以读取1024号以后的扇区，因此不分boot分区也已经无所谓了。</p>
+<ol start="2">
+<li>Stage1.5阶段<br>stage1.5阶段是stage1阶段和stage2阶段的中间桥梁。<br>加载到内存的第二个扇区的内容是由GRUB源码stage/start.S汇编而成，这个汇编文件汇编出来的二进制文件大小也是512B，一个扇区的大小。<br>接下来就要说明Stage1.5阶段的作用了。</li>
+</ol>
+<p>首先注意到Centos的操作系统内核存储在/boot/目录下，而/boot/目录挂载了ext4文件系统，虽然我们可以通过BIOS的INT13中断来读取硬盘内容，但文件是根据文件系统存储方式存储的，不知道存取规则无法取出内核文件，因此我们要读取操作系统内核文件，首先我们必须要载入ext4文件系统，否则我们根本无法读取系统内核文件。因此Stage1.5阶段的作用就不言而喻了，那就是从第二个扇区开始的N个扇区中读取/boot/分区所属的文件系统驱动。<br>我们可以看到/boot/grub下有各种文件系统类型的文件,一般我们在使用外部硬盘安装系统时，grub会判断/boot文件夹挂载的分区的文件系统格式,一般而言是ext,因此会选择/boot/grub/e2fs_stage1_5文件,将其连续的放入内存中，以便计算机能够载入文件系统，从而载入内核，因此这时硬盘的第二个扇区的内容和/boot/grub/e2fs_stage1_5文件的前512字节一样，这部分内容是有grub源码/stage2/start.S汇编出的，而这个start.S的作用就是加载磁盘的第三个扇区到第N个扇区到内存，N取几，取决与文件系统的支撑代码的大小。</p>
 <p>stage1.5将文件系统载入后，计算机就具有识别/boot/分区文件系统的能力，这时此后GRUB程序便有能力去访问/boot分区下/grub目录下的 stage2文件，并将stage2载入内存执行。</p>
 <p>注意:通过上述说明可以知道,在grub阶段，文件系统的根目录是在/boot/下的，因此访问内核文件时的路径也就是相对/boot/下的根路径，这也就能理解为什么grub.conf中操作系统内核的路径是/vmlinuz….了。</p>
 <p>C．Stage2阶段<br>Stage2阶段执行时，首先会解析GRUB程序的配置文件grub.conf，并依配置文件决定是否显示系统启动菜单。然后加载内核镜像到内存中，通过initrd程序建立RAMDisk内存虚拟根文件系统。此时控制权将转交给内核程序。</p>
-<h3 id="第三步：内核引导启动"><a href="#第三步：内核引导启动" class="headerlink" title="第三步：内核引导启动"></a>第三步：内核引导启动</h3><p><img src="/2018/10/03/3-CentOS6启动流程/linux_3_4.jpg" alt="procedure1"></p>
+<h3 id="第三步：内核引导启动"><a href="#第三步：内核引导启动" class="headerlink" title="第三步：内核引导启动"></a>第三步：内核引导启动</h3><p><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_4.jpg" alt="procedure1"></p>
 <p>这一部分主要是通过在内存中建立虚拟根文件系统实现相关设备的驱动并建立和切换到真正的根文件系统。</p>
-<p>思考下为什么要建立虚拟根文件系统呢？<br>问题:现如今的文件种类繁多，微内核设计为了精简因此不可能将所有文件系统的驱动嵌入到内核当中，因此怎么能够保证程序能够100%的读取硬盘的文件系统并将其挂载到根目录下呢？<br>解决办法:</p>
+<p>思考下为什么要建立虚拟根文件系统呢？<br>问题:现如今的文件种类繁多，微内核设计为了精简因此不可能将所有文件系统和硬盘的驱动嵌入到内核当中，因此怎么能够保证程序能够100%的读取硬盘的文件系统和驱动并将其挂载到根目录下呢？<br>解决办法:</p>
 <ol>
 <li>微内核仍然具有一种文件系统的驱动，而通过这个文件系统去加载一个虚拟根文件系统，该文件系统中包括其他所有文件系统的驱动程序，然后微内核通过识别设备中的文件系统信息加载对应的文件系统驱动。</li>
 <li>微内核中不包含所有的文件系统驱动，通过bootloader程序将中介文件系统驱动的连续的存放在磁盘前几个扇区之中，linux在启动过程中通过读入驱动来读取虚拟根文件系统。然后微内核通过识别设备的文件系统信息在虚拟根文件系统加载对应的文件系统驱动。</li>
 </ol>
-<p>在实际过程是通过1与2方法结合的方式使用<br>微内核仍然具有一种文件系统的驱动(一般是ext),bootloader程序将中介文件系统驱动的连续的存放在磁盘前几个扇区之中，如果设备的文件系统正好是ext则不加载initrd虚拟文件系统直接读取设备文件系统加载根，否则则先加载虚拟根文件系统，读入设备的文件驱动来读取内核所在分区。</p>
-<p>linux文件系统驱动程序都作为模块都放置在/lib/module文件夹中。根文件系统可以多种多样，例如ext3、fat32、ntfs等等。/lib/moudle文件夹下的内容也不是连续存放在硬盘中的，而是根据各自文件系统的存储方式，分散存储在各个存储单元中，因此当操作系统内核没有对应文件系统的驱动时，根本没法读取真正/lib/module中的驱动，因此也没办法读取真正的根文件系统。<br>因此这时就需要一个中介系统，那就是虚拟根文件系统，虚拟根文件系统中存放了各种文件系统的驱动，而内核中也只要存储一个虚拟根文件系统的驱动即可，即保持了微内核的精简也达到了启动的目的。</p>
-<p>initrd(initial RAM Disk)程序建立RAMDisk内存虚拟根文件系统后，内核开始驱动基本硬件，并调用虚拟根文件系统中的init程序加载驱动模块初始化系统中各种设备的相关配置工作，其中包括CPU、I/O、存储设备等。当所需的驱动程序加载完后，会根据grub.conf配置文件中“root=XXX”部分所指定的内容创建一个根设备，然后将根文件系统以只读的方式挂载(为了防止启动过程中发生错误导致根文件系统崩溃)，并切换到真正的根文件系统上，同时调用系统进程的老祖宗进程/sbin/init程序，进入系统初始化阶段。</p>
-<h3 id="第四步：系统初始化"><a href="#第四步：系统初始化" class="headerlink" title="第四步：系统初始化"></a>第四步：系统初始化</h3><p><img src="/2018/10/03/3-CentOS6启动流程/linux_3_5.jpg" alt="procedure1"></p>
-<p>这一步是通过/sbin/init,init程序准备软件运行坏境，启动系统服务。<br><img src="/2018/10/03/3-CentOS6启动流程/linux_3_6.jpg" alt="procedure1"><br>在内核初始化的最后，内核将启动pid为1的init进程，即 UpStart进程。<br>UpStart解决了之前sysvinit的缺点。采用事件驱动模型，UpStart可以：更快地启动系统、当新硬件被发现时动态启动服务、硬件被拔除时动态停止服务。<br>Upstart 进程在执行了一些自身的初始化工作后，立即发出”startup”事件。上图中用红色方框加红色箭头表示事件，可以在左上方看到”startup”事件。<br>所有依赖于”startup”事件的工作被触发，其中最重要的是 mountall。mountall 任务负责挂载系统中需要使用的文件系统，完成相应工作后，mountall任务会发出以下事件：local-filesystem，virtual-filesystem，all-swaps，<br>其中 virtual-filesystem事件触发udev任务开始工作。任务 udev触 upstart-udev-bridge的工作。Upstart-udev-bridge会发出net-device-up IFACE=lo事件，表示本地回环 IP 网络已经准备就绪。同时，任务mountall继续执行，最终会发出 filesystem 事件。<br>此时，任务 rc-sysinit会被触发，因为 rc-sysinit的start on条件如下：<br><code>start on filesystem and net-device-up IFACE=lo</code><br>任务 rc-sysinit 调用 telinit。Telinit 任务会发出 runlevel事件，触发执行/etc/init/rc.conf。<br>rc.conf 执行/etc/rc$.d/目录下的所有脚本</p>
+<p>在实际过程是通过第二种方法。</p>
+<p>linux文件系统驱动程序都作为模块都放置在/lib/module文件夹中。根文件系统可以多种多样，例如ext3、fat32、ntfs等等。/lib/moudle文件夹下的内容也不是连续存放在硬盘中的，而是根据各自文件系统的存储方式，分散存储在各个存储单元中，因此当操作系统内核没有对应文件系统的驱动时，根本没法读取真正/lib/module中的驱动，因此也没办法读取真正的根文件系统。<br>因此这时就需要一个中介系统，那就是虚拟根文件系统,保持了微内核的精简也达到了启动的目的。</p>
+<p>initrd(initial RAM Disk)(initramfs Initial RAM FileSystem)程序建立RAMDisk内存虚拟根文件系统后，内核开始驱动基本硬件，并调用虚拟根文件系统中的init程序加载驱动模块初始化系统中各种设备的相关配置工作，其中包括CPU、I/O、存储设备等。当所需的驱动程序加载完后，会根据grub.conf配置文件中“root=XXX”部分所指定的内容创建一个根设备，然后将根文件系统以只读的方式挂载(为了防止启动过程中发生错误导致根文件系统崩溃)，并切换到真正的根文件系统上，同时调用系统进程的老祖宗进程/sbin/init程序，进入系统初始化阶段。</p>
+<p><strong>*</strong>注:在grup过程中,最重要的是grup1.5加载文件系统，只有加载了文件系统才能读取内核所在分区的内核文件,而硬盘驱动只是锦上添花,因为BIOS的INT13中断也可以读取硬盘内容，只不过比较粗糙，只能一个扇区一个扇区读取，并非只有加载了硬盘驱动才能读取硬盘内容，(如果只有硬盘驱动才能读取，那怎么加载MBR呢？硬盘驱动只是能帮助更好性能的存储和管理硬盘)。现在很多centos系统都可以没有boot分区直接将内核文件和bootloader放置在根目录下,仔细考虑下，是不是grup1.5中的文件系统时最重要的,因为内核文件和根在同一分区同一文件系统，计算机通过grup1.5知道了文件系统通过INT13中断可以读取/下的所有文件了,包括/lib/modules, initrd是不是就没必要了**</p>
+<p>总结:</p>
+<p>initrd:主要是解决根目录不同操作系统的复杂性和统一加载驱动来挂载根目录。<br>grup1.5加载内核所在分区的操作系统驱动。</p>
+<p>当内核文件和根所在文件系统相同时，initrd锦上添花。<br>当内核文件和根所在文件系统不同时，initrd必不可少。</p>
+<h3 id="第四步：系统初始化"><a href="#第四步：系统初始化" class="headerlink" title="第四步：系统初始化"></a>第四步：系统初始化</h3><p><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_5.jpg" alt="procedure1"></p>
+<p>这一步是通过/sbin/init,init程序准备软件运行坏境，启动系统服务。<br><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_6.jpg" alt="procedure1"><br>在内核初始化的最后，内核将启动pid为1的init进程，即 UpStart进程。<br>UpStart解决了之前sysvinit的缺点。采用事件驱动模型，UpStart可以：更快地启动系统、当新硬件被发现时动态启动服务、硬件被拔除时动态停止服务。<br>Upstart 进程在执行了一些自身的初始化工作后，立即发出”startup”事件。上图中用红色方框加红色箭头表示事件，可以在左上方看到”startup”事件。<br>所有依赖于”startup”事件的工作被触发，其中最重要的是 mountall。mountall 任务负责挂载系统中需要使用的文件系统，完成相应工作后，mountall任务会发出以下事件：local-filesystem，virtual-filesystem，all-swaps，<br>其中 virtual-filesystem事件触发udev任务开始工作。任务 udev触 upstart-udev-bridge的工作。Upstart-udev-bridge会发出net-device-up IFACE=lo事件，表示本地回环 IP 网络已经准备就绪。同时，任务mountall继续执行，最终会发出 filesystem 事件。<br>此时，任务 rc-sysinit会被触发，因为 rc-sysinit的start on条件如下：<br><code>start on filesystem and net-device-up IFACE=lo</code><br>任务 rc-sysinit 调用 telinit。Telinit 任务会发出 runlevel事件，触发执行/etc/init/rc.conf。<br>rc.conf 执行/etc/rc$.d/目录下的所有脚本</p>
 <p>rc全称为running command</p>
 <p>通过/etc/inittab文件确定运行级别，然后去执行系统初始化脚本/etc/rc.sysinit,为用户初始化用户空间环境，在完成初始化后，根据运行级别，系统开始对应级别的目录启动服务，关闭那些不要的服务（里面S99local -&gt; ../rc.local）用户自动服务启动脚本</p>
 <h4 id="默认运行级别-etc-inittab文件"><a href="#默认运行级别-etc-inittab文件" class="headerlink" title="默认运行级别/etc/inittab文件"></a>默认运行级别/etc/inittab文件</h4><p>设置系统启动的默认级别</p>
@@ -433,7 +438,7 @@
 <p>（1）设置主机名；<br>（2）设置欢迎信息；<br>（3）激活udev和selinux；<br>（4）挂载/etc/fstab文件中定义的所有文件系统；<br>（5）检测根文件系统，并以读写方式重新挂载根文件系统；（重新挂载是指根文件检测完之后）<br>（6）设置系统时钟；<br>（7）根据/etc/sysctl.conf文件来设置内核参数；<br>（8）激活lvm即软raid设备；<br>（9）激活swap设备；<br>（10）加载额外设备的驱动程序；（内核加载驱动只加载根文件系统的）<br>（11）清理操作；</p>
 </blockquote>
 <h4 id="脚本文件-etc-rc-d"><a href="#脚本文件-etc-rc-d" class="headerlink" title="脚本文件/etc/rc.d/"></a>脚本文件/etc/rc.d/</h4><p>脚本文件/etc/rc.d/rc作用为当级别切换时启动或停止服务；此脚本接受传递的参数给脚本中$runlevel变量，然后，读取/etc/rc$runlevel.d/K*和/etc/rc$runlevel.d/S*所有文件，这些文件就是为什么开机启动后，有些服务会自动启动，有些服务没有启动的原因。<br>K*：要停止的服务，K##*，优先级，数字越小，越优先关闭，依赖的服务先关闭，然后再关闭被依赖的。<br>S*：要启动的服务，S##*，优先级，数字越小，越是优先启动，被依赖的服务先启动，而依赖的服务后启动。<br>这些文件都是链接文件，它们链接到了/etc/init.d/*目录下的各个程序的。<br>一般可以使用chkconfig命令实现设置某一服务下次重启系统后是该关闭或者开启，该命令的本质也就是修改对应文件夹下的文件名。<br>此外当用户需要自定义开机启动程序，可以根据自己的需求将一些执行命令或是写到脚本/etc/rc.d/rc.local.当开机时就可以自动加载啦！</p>
-<h3 id="第五步：启动终端，用户登录shell"><a href="#第五步：启动终端，用户登录shell" class="headerlink" title="第五步：启动终端，用户登录shell"></a>第五步：启动终端，用户登录shell</h3><p><img src="/2018/10/03/3-CentOS6启动流程/linux_3_7.jpg" alt="procedure1"></p>
+<h3 id="第五步：启动终端，用户登录shell"><a href="#第五步：启动终端，用户登录shell" class="headerlink" title="第五步：启动终端，用户登录shell"></a>第五步：启动终端，用户登录shell</h3><p><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_7.jpg" alt="procedure1"></p>
 <p>这一步是用户登录shell过程<br>如果没有改变级别，默认情况执行/sbin/mingetty打开6个纯文本终端，让用户输入用户名和密码。输入完成后，再调用login程序，核对密码。如果密码正确，就从文件 /etc/passwd 读取该用户指定的shell，然后启动这个shell。</p>
 <h2 id="Grub配置"><a href="#Grub配置" class="headerlink" title="Grub配置"></a>Grub配置</h2><blockquote>
 <p>default=0 #设定默认启动菜单项，默认为0开始<br>timeout=5 #指定菜单等待选择的时长<br>splashimage=(hd0,0)/grub/splash.xpm.gz #指定菜单的背景图片的路径，为xpm格式，采用gzip压缩<br>hiddenmenu #是否影藏菜单<br>password –md5 $1$1S9Xy$1MuGZSoPc2vAtkW.jvz0X/ #菜单编辑认证<br>title CentOS 6 (2.6.32-642.el6.x86_64) #定义菜单项<br>password 123456 #可以选择明文<br>root (hd0,0) #本次grub查找stage2及其kernel文件所在设备分区，指定grub的根<br>kernel /vmlinuz-2.6.32-642.el6.x86_64 ro root=UUID=240533cf-b37f-4460-974f-702bab867da5 nomodeset rd_NO_LUKS  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_MD crashkernel=auto LANG=zh_CN.UTF-8 rd_NO_LVM rd_NO_DM rhgb quiet #需要启动的内核<br>initrd /initramfs-2.6.32-642.el6.x86_64.img #内核匹配的ramfs文件</p>
