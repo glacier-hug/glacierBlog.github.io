@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_5.jpg">
 <meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_6.jpg">
 <meta property="og:image" content="https://glacier-hug.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_7.jpg">
-<meta property="og:updated_time" content="2018-10-25T05:26:58.583Z">
+<meta property="og:updated_time" content="2018-10-25T05:38:00.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3.CentOS6启动流程">
 <meta name="twitter:description" content="Linux启动流程">
@@ -421,10 +421,8 @@
 <p>在实际过程是通过第二种方法。</p>
 <p>linux文件系统驱动程序都作为模块都放置在/lib/module文件夹中。根文件系统可以多种多样，例如ext3、fat32、ntfs等等。/lib/moudle文件夹下的内容也不是连续存放在硬盘中的，而是根据各自文件系统的存储方式，分散存储在各个存储单元中，因此当操作系统内核没有对应文件系统的驱动时，根本没法读取真正/lib/module中的驱动，因此也没办法读取真正的根文件系统。<br>因此这时就需要一个中介系统，那就是虚拟根文件系统,保持了微内核的精简也达到了启动的目的。</p>
 <p>initrd(initial RAM Disk)(initramfs Initial RAM FileSystem)程序建立RAMDisk内存虚拟根文件系统后，内核开始驱动基本硬件，并调用虚拟根文件系统中的init程序加载驱动模块初始化系统中各种设备的相关配置工作，其中包括CPU、I/O、存储设备等。当所需的驱动程序加载完后，会根据grub.conf配置文件中“root=XXX”部分所指定的内容创建一个根设备，然后将根文件系统以只读的方式挂载(为了防止启动过程中发生错误导致根文件系统崩溃)，并切换到真正的根文件系统上，同时调用系统进程的老祖宗进程/sbin/init程序，进入系统初始化阶段。</p>
-<p><strong>*</strong>注:在grup过程中,最重要的是grup1.5加载文件系统，只有加载了文件系统才能读取内核所在分区的内核文件,而硬盘驱动只是锦上添花,因为BIOS的INT13中断也可以读取硬盘内容，只不过比较粗糙，只能一个扇区一个扇区读取，并非只有加载了硬盘驱动才能读取硬盘内容，(如果只有硬盘驱动才能读取，那怎么加载MBR呢？硬盘驱动只是能帮助更好性能的存储和管理硬盘)。现在很多centos系统都可以没有boot分区直接将内核文件和bootloader放置在根目录下,仔细考虑下，是不是grup1.5中的文件系统时最重要的,因为内核文件和根在同一分区同一文件系统，计算机通过grup1.5知道了文件系统通过INT13中断可以读取/下的所有文件了,包括/lib/modules, initrd是不是就没必要了**</p>
-<p>总结:</p>
-<p>initrd:主要是解决根目录不同操作系统的复杂性和统一加载驱动来挂载根目录。<br>grup1.5加载内核所在分区的操作系统驱动。</p>
-<p>当内核文件和根所在文件系统相同时，initrd锦上添花。<br>当内核文件和根所在文件系统不同时，initrd必不可少。</p>
+<p>***注:在grup过程中,最重要的是grup1.5加载文件系统，只有加载了文件系统才能读取内核所在分区的内核文件,而硬盘驱动只是锦上添花,因为BIOS的INT13中断也可以读取硬盘内容，只不过比较粗糙，只能一个扇区一个扇区读取，并非只有加载了硬盘驱动才能读取硬盘内容，(如果只有硬盘驱动才能读取，那怎么加载MBR呢？硬盘驱动只是能帮助更好性能的存储和管理硬盘)。现在很多centos系统都可以没有boot分区直接将内核文件和bootloader放置在根目录下,仔细考虑下，是不是grup1.5中的文件系统时最重要的,因为内核文件和根在同一分区同一文件系统，计算机通过grup1.5知道了文件系统通过INT13中断可以读取/下的所有文件了,包括/lib/modules, initrd是不是就没必要了</p>
+<p>总结:<br>1.initrd:主要是解决根目录不同操作系统的复杂性和统一加载驱动来挂载根目录。<br>2.grup1.5加载内核所在分区的操作系统驱动。<br>3.当内核文件和根所在文件系统相同时，initrd锦上添花。<br>4.当内核文件和根所在文件系统不同时，initrd必不可少。</p>
 <h3 id="第四步：系统初始化"><a href="#第四步：系统初始化" class="headerlink" title="第四步：系统初始化"></a>第四步：系统初始化</h3><p><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_5.jpg" alt="procedure1"></p>
 <p>这一步是通过/sbin/init,init程序准备软件运行坏境，启动系统服务。<br><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_6.jpg" alt="procedure1"><br>在内核初始化的最后，内核将启动pid为1的init进程，即 UpStart进程。<br>UpStart解决了之前sysvinit的缺点。采用事件驱动模型，UpStart可以：更快地启动系统、当新硬件被发现时动态启动服务、硬件被拔除时动态停止服务。<br>Upstart 进程在执行了一些自身的初始化工作后，立即发出”startup”事件。上图中用红色方框加红色箭头表示事件，可以在左上方看到”startup”事件。<br>所有依赖于”startup”事件的工作被触发，其中最重要的是 mountall。mountall 任务负责挂载系统中需要使用的文件系统，完成相应工作后，mountall任务会发出以下事件：local-filesystem，virtual-filesystem，all-swaps，<br>其中 virtual-filesystem事件触发udev任务开始工作。任务 udev触 upstart-udev-bridge的工作。Upstart-udev-bridge会发出net-device-up IFACE=lo事件，表示本地回环 IP 网络已经准备就绪。同时，任务mountall继续执行，最终会发出 filesystem 事件。<br>此时，任务 rc-sysinit会被触发，因为 rc-sysinit的start on条件如下：<br><code>start on filesystem and net-device-up IFACE=lo</code><br>任务 rc-sysinit 调用 telinit。Telinit 任务会发出 runlevel事件，触发执行/etc/init/rc.conf。<br>rc.conf 执行/etc/rc$.d/目录下的所有脚本</p>
 <p>rc全称为running command</p>
