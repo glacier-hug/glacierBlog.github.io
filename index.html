@@ -293,6 +293,276 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://glacier-hug.github.io/glacierBlog.github.io/glacierBlog.github.io/2018/10/25/BIOS-Boot-Partition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="glacier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/glacierBlog.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="a contented mind is perpetual feast">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/glacierBlog.github.io/2018/10/25/BIOS-Boot-Partition/" itemprop="url">BIOS Boot Partition</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-25T13:53:29+08:00">
+                2018-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>BIOS boot partition是一个分区，grub用它来引导基于legacy bios但启动设备上却包含GPT格式分区表时的操作系统。这种结构有时候被称为BIOS/GPT启动。<br>Bios boot分区是必要的，因为GPT使用紧跟在MBR后面的扇区来保存实际的分区表(34个扇区)，但在传统的MBR分区架构中，这些扇区并没有特殊的作用，这样的结果是没有足够的可用空闲空间来存储stage2这段boot loader。虽然MBR中也存储了boot loader，但MBR无法存储超过512字节的内容，所以MBR中的这段boot loader被当作stage1使用，它的主要作用是加载功能更多更复杂的stage2这段boot loader，stage2可以从文件系统读取和载入操作系统内核。<br>正常情况bootloader-grub的stage2存储在第二个扇区，但是GPT却占了前34个扇区，导致无法存储。因此需要建立一个分区</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/glacierBlog.github.io/2018/10/25/BIOS-Boot-Partition/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://glacier-hug.github.io/glacierBlog.github.io/glacierBlog.github.io/2018/10/25/FAT系统解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="glacier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/glacierBlog.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="a contented mind is perpetual feast">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/glacierBlog.github.io/2018/10/25/FAT系统解析/" itemprop="url">FAT系统解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-25T13:46:40+08:00">
+                2018-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/glacierBlog.github.io/categories/Operation-System/" itemprop="url" rel="index">
+                    <span itemprop="name">Operation System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>FAT(File Alloctaion Table)文件分配表，是将所有的扇区或簇(连续的扇区)按数字编号一一对应在一张表中，表的行号代表扇区或簇的编号，表内存储的是该文件下一个存储单元的编号，相当于是一张静态链接表。文件描述符中存储第一个存储单元在分配表的行号，通过不断地查找行号获得行内容，找到对应的全部文件。<br>FAT表的表项存储了下一个存储单元(扇区或簇)对应的行号。因此表项的长度也就决定了最大行数.FAT12,FAT16,FAT32后面的数字就是代表表项的位数。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/glacierBlog.github.io/2018/10/25/FAT系统解析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://glacier-hug.github.io/glacierBlog.github.io/glacierBlog.github.io/2018/10/11/11-IP命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1469,389 +1739,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://glacier-hug.github.io/glacierBlog.github.io/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="glacier">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/glacierBlog.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="a contented mind is perpetual feast">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/" itemprop="url">3.CentOS6启动流程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-03T10:00:00+08:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/glacierBlog.github.io/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Linux启动流程"><a href="#Linux启动流程" class="headerlink" title="Linux启动流程"></a>Linux启动流程</h1><p><img src="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/linux_3_1.jpg" alt="procedure1"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/glacierBlog.github.io/2018/10/03/3-CentOS6启动流程/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://glacier-hug.github.io/glacierBlog.github.io/glacierBlog.github.io/2018/10/02/2-Vim快捷键/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="glacier">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/glacierBlog.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="a contented mind is perpetual feast">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/glacierBlog.github.io/2018/10/02/2-Vim快捷键/" itemprop="url">2.Vim快捷键</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-02T10:00:00+08:00">
-                2018-10-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/glacierBlog.github.io/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="移动类"><a href="#移动类" class="headerlink" title="移动类"></a>移动类</h2><p>Normal模式下:</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>助记</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>j</td>
-<td></td>
-<td>光标下移</td>
-</tr>
-<tr>
-<td>k</td>
-<td></td>
-<td>光标上移</td>
-</tr>
-<tr>
-<td>h</td>
-<td></td>
-<td>光标左移</td>
-</tr>
-<tr>
-<td>l</td>
-<td></td>
-<td>光标右移</td>
-</tr>
-<tr>
-<td>$</td>
-<td></td>
-<td>光标移至行尾</td>
-</tr>
-<tr>
-<td>0</td>
-<td></td>
-<td>光标移至行首</td>
-</tr>
-<tr>
-<td>^</td>
-<td></td>
-<td>光标移至行第一个非空字符</td>
-</tr>
-<tr>
-<td>b</td>
-<td>Begin</td>
-<td>光标移至当前单词词首,大写B忽略标点符号为分隔符</td>
-</tr>
-<tr>
-<td>e</td>
-<td>End</td>
-<td>光标移至当前单词词尾,大写E忽略标点符号为分隔符</td>
-</tr>
-<tr>
-<td>w</td>
-<td>Word</td>
-<td>光标移至下一个单词词首,大写W忽略标点符号为分隔符</td>
-</tr>
-<tr>
-<td>()</td>
-<td></td>
-<td>光标移到上下一句的句首。句子以回车或句号为结尾。</td>
-</tr>
-<tr>
-<td>{}</td>
-<td></td>
-<td>光标移到上下一段落的端首。段落以回车为结尾</td>
-</tr>
-<tr>
-<td>Ctrl + f</td>
-<td>forward</td>
-<td>光标向下翻一页</td>
-</tr>
-<tr>
-<td>Ctrl + b</td>
-<td>backward</td>
-<td>光标向上翻一页</td>
-</tr>
-<tr>
-<td>Ctrl + u</td>
-<td>Up</td>
-<td>光标向上翻半页</td>
-</tr>
-<tr>
-<td>Ctrl + d</td>
-<td>Down</td>
-<td>光标向下翻半页</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/glacierBlog.github.io/2018/10/02/2-Vim快捷键/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1906,7 +1793,7 @@
               
                 <a href="/glacierBlog.github.io/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1917,7 +1804,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/glacierBlog.github.io/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1928,7 +1815,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/glacierBlog.github.io/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
